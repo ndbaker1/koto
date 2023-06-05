@@ -1,1 +1,1 @@
-export const name = "No name yet."
+export const name = "koto"
