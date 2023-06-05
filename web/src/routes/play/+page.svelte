@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { name } from '$lib/constants';
-
 	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 	let pressed = false;
@@ -63,6 +61,11 @@
 			}
 		}
 	}
+
+	function handleGridSelect(col: number, row: number) {
+		pressed = true;
+		actionIndex(col, row);
+	}
 </script>
 
 <svelte:window
@@ -82,14 +85,8 @@
 				{#each Array.from(Array(6).keys()) as column (column)}
 					<div
 						class="letter"
-						on:touchstart={() => {
-							pressed = true;
-							actionIndex(column, row);
-						}}
-						on:mousedown={() => {
-							pressed = true;
-							actionIndex(column, row);
-						}}
+						on:touchstart={() => handleGridSelect(column, row)}
+						on:mousedown={() => handleGridSelect(column, row)}
 						on:mousemove={() => actionIndex(column, row)}
 						on:touchmove={() => actionIndex(column, row)}
 						class:highlighted={selectionMatrix[column][row]}
