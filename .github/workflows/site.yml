@@ -35,14 +35,14 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Build Svelte
         run: |
-          cd pages
+          cd web
           npm i
           npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: 'pages/build'
+          path: "web/build"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
